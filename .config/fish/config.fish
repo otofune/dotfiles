@@ -4,6 +4,7 @@
 set -x PATH ~/go/bin $PATH
 set -x PATH ~/.nodebrew/current/bin $PATH
 eval (direnv hook fish)
+ssh-add -A > /dev/null 2>&1
 
 # be laziness
 function code
@@ -16,14 +17,14 @@ function code
 end
 
 function git
-  switch (echo $argv[1])
-  # override with ghq
-  case clone
-     ghq get $argv[2..(count $argv)]
-     ghq look $argv[2]
-  case '*'
-     command git $argv
+  # override simple clone with ghq
+  if test $argv[1] = 'clone' -a (count $argv) -eq 2
+    ghq get -u $argv[2..(count $argv)]
+    ghq look $argv[2]
+    return
   end
+  
+  command git $argv
 end
 
 function cd
