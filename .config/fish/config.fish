@@ -39,7 +39,7 @@ function cd
   builtin cd $argv
 end
 
-alias mili="direnv exec (ghq root)/github.com/otofune/mili node /Users/otofune/.ghq/github.com/otofune/mili"
+alias mili="env DIRENV_LOG_FORMAT= direnv exec (ghq root)/github.com/otofune/mili node /Users/otofune/.ghq/github.com/otofune/mili"
 function note
   echo $argv | mili
 end
@@ -47,3 +47,5 @@ end
 # typo
 alias gti="git"
 
+# update brew
+brew upgrade --clean 1>/dev/null &
