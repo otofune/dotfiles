@@ -47,5 +47,6 @@ end
 # typo
 alias gti="git"
 
-# update brew
-brew upgrade --clean 1>/dev/null &
+# update brew at background
+brew update > /dev/null 2>&1 &
+
