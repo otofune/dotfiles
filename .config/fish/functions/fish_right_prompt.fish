@@ -1,7 +1,8 @@
 # (c) 2018 otofune
 
 function fish_right_prompt
-	if test (git rev-parse --is-inside-work-tree) = "true"
+	set grp (git rev-parse --is-inside-work-tree 2>/dev/null)
+	if [ $status -eq 0 ]; and [ $grp = "true" ]
 		set_color brblue
 
 		git rev-parse HEAD > /dev/null 2>&1
