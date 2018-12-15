@@ -47,6 +47,13 @@ end
 # typo
 alias gti="git"
 
-# update brew at background
-brew update > /dev/null 2>&1 &
+# update brew once per hour at background
+set brew_lock_dir ~/.config/fish/bu
+mkdir -p $brew_lock_dir
+set brew_lock ".b_u_"(date '+%y%m%d-%H')
+if [ ! -f $brew_lock_dir/$brew_lock  ]
+  touch $brew_lock_dir/$brew_lock
+  echo 'Updating brew...'
+  brew update > /dev/null 2>&1 &
+end
 
