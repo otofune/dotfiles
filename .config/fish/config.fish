@@ -48,6 +48,8 @@ end
 alias gti="git"
 
 # update brew once per hour at background
+# this part is not so well... it's better choise to use LaunchAgent || Cron.
+# but, they need priviledge access.
 set brew_lock_dir ~/.config/fish/bu
 mkdir -p $brew_lock_dir
 set brew_lock ".b_u_"(date '+%y%m%d-%H')
