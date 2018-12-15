@@ -3,7 +3,7 @@
 My Shell: The Good Parts
 
 ```sh
-brew install direnv
+brew install direnv fzf
 go get github.com/motemen/ghq
 ```
 
