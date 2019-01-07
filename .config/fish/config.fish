@@ -40,7 +40,7 @@ function cd
   builtin cd $argv
 end
 
-alias mili="env DIRENV_LOG_FORMAT= direnv exec (ghq root)/github.com/otofune/mili node /Users/otofune/.ghq/github.com/otofune/mili"
+alias mili="env DIRENV_LOG_FORMAT= direnv exec (ghq root)/github.com/otofune/mili node (ghq root)/github.com/otofune/mili"
 function note
   echo $argv | mili
 end
