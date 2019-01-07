@@ -5,6 +5,7 @@ set -x PATH ~/go/bin $PATH
 set -x PATH ~/.nodebrew/current/bin $PATH
 eval (direnv hook fish)
 ssh-add -A > /dev/null 2>&1
+set -x GOPATH ~/go
 
 # be laziness
 function code
