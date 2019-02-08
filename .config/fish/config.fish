@@ -49,6 +49,8 @@ end
 # typo
 alias gti="git"
 
+alias gu="env DIRENV_LOG_FORMAT= direnv exec (ghq root)/github.com/vvakame/github-unsubscriber npx github-unsubscriber --run"
+
 # update brew once per hour at background
 # this part is not so well... it's better choise to use LaunchAgent || Cron.
 # but, they need priviledge access.
