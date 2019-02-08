@@ -8,3 +8,6 @@ root = ~/go/src
 [include]
 path = ~/.gitconfig-secret
 
+[alias]
+cehckout = checkout
+
