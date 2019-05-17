@@ -11,3 +11,6 @@ path = ~/.gitconfig-secret
 [alias]
 cehckout = checkout
 
+[core]
+  excludesfile = ~/.gitignore-global
+
