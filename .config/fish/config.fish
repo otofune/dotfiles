@@ -68,3 +68,19 @@ if [ ! -f $brew_lock_dir/$brew_lock  ]
   brew update > /dev/null 2>&1 &
 end
 
+function npm
+  if [ -f 'yarn.lock' ]
+    echo 'yarn つかえ'
+    return 0
+  end
+  command npm $argv
+end
+
+function yarn
+  if [ -f 'package-lock.json' ]
+    echo 'npm つかえ'
+    return 0
+  end
+  command npm $argv
+end
+

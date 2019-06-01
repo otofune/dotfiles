@@ -1,6 +1,6 @@
 [user]
 name = otofune
-email = otofune@gmail.com
+email = otofune@otofune.me
 
 [ghq]
 root = ~/go/src
@@ -12,5 +12,5 @@ path = ~/.gitconfig-secret
 cehckout = checkout
 
 [core]
-  excludesfile = ~/.gitignore-global
+excludesfile = ~/.gitignore-global
 
