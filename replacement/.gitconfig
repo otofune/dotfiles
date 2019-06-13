@@ -13,4 +13,3 @@ cehckout = checkout
 
 [core]
 excludesfile = ~/.gitignore-global
-
