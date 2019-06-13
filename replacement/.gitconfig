@@ -2,9 +2,6 @@
 name = otofune
 email = otofune@otofune.me
 
-[ghq]
-root = ~/go/src
-
 [include]
 path = ~/.gitconfig-secret
 
