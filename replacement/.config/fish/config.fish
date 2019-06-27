@@ -81,6 +81,7 @@ function yarn
     echo 'npm つかえ'
     return 0
   end
-  command npm $argv
+  command yarn $argv
 end
 
+set -g fish_user_paths "/usr/local/opt/node@10/bin" $fish_user_paths
