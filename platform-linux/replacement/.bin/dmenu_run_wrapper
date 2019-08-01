@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if xrandr | grep "DisplayPort-1 connected"
+then
+  export GDK_DPI_SCALE=1.4
+fi
+
+exec dmenu_run
+
+
