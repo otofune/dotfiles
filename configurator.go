@@ -30,21 +30,16 @@ type target struct {
 }
 
 func digAllFiles(base string, rel string) (targets []*target) {
-	fis, err := ioutil.ReadDir(base + "/" + rel)
+	files, err := ioutil.ReadDir(filepath.Join(base, rel))
 	if err != nil {
 		return
 	}
-	for _, file := range fis {
-		var path string
+	for _, file := range files {
 		name := file.Name()
 		if name == ".gitignore" {
 			continue
 		}
-		if rel == "" {
-			path = name
-		} else {
-			path = rel + "/" + name
-		}
+		path := filepath.Join(rel, name)
 		if file.IsDir() {
 			targets = append(targets, digAllFiles(base, path)...)
 			continue
@@ -59,7 +54,7 @@ func digAllFiles(base string, rel string) (targets []*target) {
 	return
 }
 
-func move(p string) error {
+func backup(p string) error {
 	to := p + "-b" + fmt.Sprintf("%v", time.Now().Unix())
 	fmt.Printf("=> Backuping %s => %s\n", p, to)
 	return os.Rename(p, to)
@@ -104,7 +99,7 @@ func patchOverlay(base string, overlays []*target) error {
 					return err
 				}
 
-				if err := move(targetPath); err != nil {
+				if err := backup(targetPath); err != nil {
 					return err
 				}
 
@@ -120,7 +115,6 @@ func patchOverlay(base string, overlays []*target) error {
 			return fmt.Errorf("Unsupported Type")
 		}
 	}
-	// TODO
 	return nil
 }
 func symlinkReplacement(base string, replacements []*target) error {
@@ -129,9 +123,9 @@ func symlinkReplacement(base string, replacements []*target) error {
 		targetPath := path.Join(base, target.TargetDir, target.TargetName)
 		fmt.Printf("Linking %s => %s\n", target.Source, targetPath)
 		stat, err := os.Lstat(targetPath)
-		if err == nil {
+		if !os.IsNotExist(err) {
 			if stat.Mode()&os.ModeSymlink == 0 {
-				move(targetPath)
+				backup(targetPath)
 			} else {
 				fmt.Printf("=> Removing existing %s...\n", targetPath)
 				if err := os.Remove(targetPath); err != nil {
