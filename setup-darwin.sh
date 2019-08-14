@@ -27,6 +27,7 @@ install gcloud brew cask install google-cloud-sdk
 install fish brew install fish
 install ghq brew install ghq
 install micro brew install micro
+install anyenv brew install anyenv
 
 brew cask install skitch
 
@@ -36,6 +37,8 @@ code --install-extension castwide.solargraph
 
 which fish | sudo tee -a /etc/shells
 chsh -s $(which fish)
+
+anyenv install --init
 
 npm install -g yarn
 gem install --user bundler

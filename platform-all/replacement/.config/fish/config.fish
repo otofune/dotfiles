@@ -2,7 +2,6 @@
 
 # Set-up tools
 set -x PATH ~/go/bin $PATH
-set -x PATH ~/.nodebrew/current/bin $PATH
 eval (direnv hook fish)
 ssh-add -A > /dev/null 2>&1
 set -x GOPATH ~/go
@@ -84,4 +83,5 @@ function yarn
   command yarn $argv
 end
 
-set -g fish_user_paths "/usr/local/opt/node@10/bin" $fish_user_paths
+anyenv init - fish | source
+
