@@ -29,6 +29,8 @@ install ghq brew install ghq
 install micro brew install micro
 install anyenv brew install anyenv
 
+install pg_config brew install postgresql
+
 brew cask install skitch
 
 code --install-extension EditorConfig.EditorConfig
