@@ -12,7 +12,8 @@ install brew '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/H
 
 brew update
 
-brew cask install iTerm2 aquaskk 1password
+brew cask install iTerm2 aquaskk
+brew cask install 1password slack docker
 
 install code brew cask install visual-studio-code
 install firefox brew cask install firefox
@@ -25,6 +26,7 @@ install python2 brew install python2
 install gcloud brew cask install google-cloud-sdk
 install fish brew install fish
 install ghq brew install ghq
+install micro brew install micro
 
 brew cask install skitch
 
@@ -36,3 +38,4 @@ which fish | sudo tee -a /etc/shells
 chsh -s $(which fish)
 
 npm install -g yarn
+gem install --user bundler
