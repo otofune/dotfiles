@@ -1,5 +1,25 @@
 #!/bin/bash
 
+i-cask () {
+	target=$1
+
+	brew cask list $1
+	if [ $? -eq 1 ]
+	then
+		brew cask install $target
+	fi
+}
+
+i () {
+	target=$1
+
+	brew list $1
+	if [ $? -eq 1 ]
+	then
+		brew install $target
+	fi
+}
+
 install () {
   which $1
   if [ $? -eq 1 ]
@@ -8,30 +28,29 @@ install () {
   fi
 }
 
-install brew '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 
-brew cask install iTerm2 aquaskk
-brew cask install 1password slack docker
+i-cask iTerm2
+i-cask aquaskk
+i-cask 1password
+i-cask slack
+i-cask docker
+i-cask visual-studio-code
+i-cask firefox
 
-install code brew cask install visual-studio-code
-install firefox brew cask install firefox
-install fzf brew install fzf
-install direnv brew install direnv
-install jq brew install jq
-install go brew install go
-install node brew install node@10
-install python2 brew install python2
-install gcloud brew cask install google-cloud-sdk
-install fish brew install fish
-install ghq brew install ghq
-install micro brew install micro
-install anyenv brew install anyenv
+i fzf
+i direnv
+i jq
+i go
+i python2
+i-cask google-cloud-sdk
+i fish
+i ghq
+i micro
+i anyenv
 
-install pg_config brew install postgresql
-
-brew cask install skitch
+i-cask skitch
 
 code --install-extension EditorConfig.EditorConfig
 code --install-extension ms-vscode.Go
@@ -42,5 +61,5 @@ chsh -s $(which fish)
 
 anyenv install --init
 
-npm install -g yarn
-gem install --user bundler
+anyenv install nodenv
+anyenv install rbenv
