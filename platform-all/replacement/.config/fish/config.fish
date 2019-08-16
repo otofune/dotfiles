@@ -39,3 +39,5 @@ anyenv init - fish | source
 if test -f ~/.config/fish/config-secret.fish
   source ~/.config/fish/config-secret.fish
 end
+
+source ~/.config/fish/on-variable-handlers.fish
