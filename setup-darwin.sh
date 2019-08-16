@@ -3,7 +3,7 @@
 i-cask () {
 	target=$1
 
-	brew cask list $1
+	brew cask list $1 &>/dev/null
 	if [ $? -eq 1 ]
 	then
 		brew cask install $target
@@ -13,7 +13,7 @@ i-cask () {
 i () {
 	target=$1
 
-	brew list $1
+	brew list $1 &>/dev/null
 	if [ $? -eq 1 ]
 	then
 		brew install $target
@@ -28,8 +28,11 @@ install () {
   fi
 }
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ which brew &>/dev/null -ne 1 ]
+then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
+fi
 
 i-cask iTerm2
 i-cask aquaskk
@@ -51,6 +54,9 @@ i micro
 i anyenv
 
 i-cask skitch
+i-cask google-chrome
+i-cask notion
+i-cask gifox
 
 code --install-extension EditorConfig.EditorConfig
 code --install-extension ms-vscode.Go
