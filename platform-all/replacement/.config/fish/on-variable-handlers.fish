@@ -8,3 +8,6 @@ function __git_fetch --on-variable PWD --description 'git fetch on entering dire
         end
     end
 end
+
+# run in boot
+__git_fetch
