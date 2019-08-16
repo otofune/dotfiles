@@ -1,6 +1,9 @@
 # (c) otofune
 
 function cd
+  # previous pwd
+  export PPWD=$PWD
+
   # with no args, override with ghq | fzf
   set length (count $argv)
   if test $length -eq 0
