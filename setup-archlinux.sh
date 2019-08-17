@@ -4,12 +4,25 @@ export GOPATH="$HOME/.projects"
 
 cd $HOME
 
+yay () {
+  which yay &> /dev/null
+  if [ $? -ne 0 ]
+  then
+    echo "Installing yay..."
+    git clone https://aur.archlinux.org/yay.git ~/.yay
+    cd ~/.yay
+    makepkg -si
+    cd ~/
+  fi
+
+  sudo $(which yay) $@
+}
 i () {
   target=$1
 
   if [ "$(pacman -Q $target)" = "" ]
   then
-    pacman -S --no-confirm $target
+    pacman -S --noconfirm $target
   else
     echo "$target was already installed."
   fi
@@ -17,9 +30,11 @@ i () {
 i-aur () {
   target=$1
 
-  if [ "$(pacman -Q $target)" = "" ]
+  if [ "$(pacman -Q $target )" = "" ]
   then
-    yay -S --no-confirm $target
+    yay -S --noconfirm $target
+  else
+    echo "$target was already installed."
   fi
 }
 i-package-group () {
@@ -48,9 +63,11 @@ i skk-jisyo
 i fish
 
 i go
-git clone https://github.com/anyenv/anyenv ~/.anyenv
-~/.anyenv/bin/anyenv init
-go get github.com/motemen/ghq
+i-aur anyenv
+anyenv install --init
+
+i-aur ghq
+i-aur direnv
 
 i chromium
 i firefox
