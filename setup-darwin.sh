@@ -20,14 +20,6 @@ i () {
 	fi
 }
 
-install () {
-  which $1
-  if [ $? -eq 1 ]
-  then
-    eval ${@:2}
-  fi
-}
-
 if [ which brew &>/dev/null -ne 1 ]
 then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -63,7 +55,11 @@ code --install-extension ms-vscode.Go
 code --install-extension castwide.solargraph
 code --install-extension mauve.terraform
 
-which fish | sudo tee -a /etc/shells
+grep fish /etc/shells &>/dev/null
+if [ $? -eq 1 ]
+then
+  which fish | sudo tee -a /etc/shells
+fi
 chsh -s $(which fish)
 
 anyenv install --init
