@@ -10,3 +10,6 @@ cehckout = checkout
 
 [core]
 excludesfile = ~/.gitignore-global
+
+[ghq]
+root = ~/.projects/src

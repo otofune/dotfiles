@@ -1,19 +1,22 @@
 # (c) 2018 otofune
 
 # Set-up tools
-set -x PATH ~/go/bin $PATH
 eval (direnv hook fish)
 anyenv init - fish | source
 ssh-add -A > /dev/null 2>&1
-set -x GOPATH ~/.ghq
+set -x GOPATH ~/.projects
 
-alias ls="ls -a"
+# add path
+set -x fish_user_paths $GOPATH/bin $fish_user_paths
+set -x fish_user_paths $HOME/.anyenv/bin $fish_user_paths
 
 # typo
-alias gti="git"
+abbr --add gti git
+abbr --add pcaman pacman
 
 # shorthand
-alias gg="git grep"
+abbr --add gg git grep
+abbr --add l ls -a
 alias docker="sudo docker"
 alias docker-compose="sudo docker-compose"
 alias pacman="sudo pacman"
