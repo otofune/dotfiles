@@ -1,14 +1,13 @@
 # (c) 2018 otofune
 
 # Set-up tools
-eval (direnv hook fish)
+direnv hook fish | source
 anyenv init - fish | source
 ssh-add -A > /dev/null 2>&1
 set -x GOPATH ~/.projects
 
 # add path
 set -x fish_user_paths $GOPATH/bin $fish_user_paths
-set -x fish_user_paths $HOME/.anyenv/bin $fish_user_paths
 
 # typo
 abbr --add gti git
