@@ -6,6 +6,7 @@ function __git_fetch --on-variable PWD --description 'git fetch on entering dire
         if ls .git 1>/dev/null 2>/dev/null
             # ignore moving from sub-directory
             if not string match -q -- "$PWD*" $PPWD
+                echo "Running git fetch..."
                 git fetch
             end
         end
