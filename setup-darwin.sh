@@ -61,6 +61,7 @@ i-cask gifox
 code --install-extension EditorConfig.EditorConfig
 code --install-extension ms-vscode.Go
 code --install-extension castwide.solargraph
+code --install-extension mauve.terraform
 
 which fish | sudo tee -a /etc/shells
 chsh -s $(which fish)
