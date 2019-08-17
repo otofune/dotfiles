@@ -54,10 +54,12 @@ i htop
 i pulseaudio
 i pulseaudio-bluetooth
 i pulseaudio-alsa
-i python2
-i python
 i uim
 i skk-jisyo
+i ffmpeg
+i cmus
+i libcdio
+i libdiscid
 
 i fish
 grep fish /etc/shells &>/dev/null
@@ -70,6 +72,10 @@ sudo chsh -s $(which fish) $USER
 i go
 i-aur anyenv
 anyenv install --init
+i python2
+i python
+i python-pipenv
+i mariadb-clients
 
 i-aur ghq
 i-aur direnv
