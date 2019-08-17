@@ -1,5 +1,4 @@
 
-alias pacman="sudo pacman"
 export GOPATH="$HOME/.projects"
 
 cd $HOME
@@ -15,14 +14,14 @@ yay () {
     cd ~/
   fi
 
-  sudo $(which yay) $@
+  $(which yay) $@
 }
 i () {
   target=$1
 
   if [ "$(pacman -Q $target)" = "" ]
   then
-    pacman -S --noconfirm $target
+    sudo pacman -S --noconfirm $target
   else
     echo "$target was already installed."
   fi
@@ -61,6 +60,12 @@ i uim
 i skk-jisyo
 
 i fish
+grep fish /etc/shells &>/dev/null
+if [ $? -eq 1 ]
+then
+  which fish | sudo tee -a /etc/shells
+fi
+sudo chsh -s $(which fish) $USER
 
 i go
 i-aur anyenv
@@ -68,6 +73,8 @@ anyenv install --init
 
 i-aur ghq
 i-aur direnv
+i fzf
+i-aur micro
 
 i chromium
 i firefox
