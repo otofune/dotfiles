@@ -1,8 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-if xrandr | grep "DisplayPort-1 connected"
-then
-  export GDK_DPI_SCALE=1.4
-fi
-
+source ~/.config/fish/environment.fish
 exec dmenu_run

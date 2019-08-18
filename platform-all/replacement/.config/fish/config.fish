@@ -34,5 +34,8 @@ end
 if test -f ~/.config/fish/config-secret.fish
   source ~/.config/fish/config-secret.fish
 end
+if test -f ~/.config/fish/environment.fish
+  source ~/.config/fish/environment.fish
+end
 
 source ~/.config/fish/on-variable-handlers.fish
