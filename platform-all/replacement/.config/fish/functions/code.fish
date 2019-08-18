@@ -1,6 +1,6 @@
 # (c) otofune
 
-function code
+function code --wraps=code
   set length (count $argv)
   if test $length -eq 0
     ghq list | fzf --exit-0 | xargs -I% command code (ghq root)/%

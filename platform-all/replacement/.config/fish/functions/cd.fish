@@ -1,6 +1,6 @@
 # (c) otofune
 
-function cd
+function cd --wraps=cd
   # previous pwd
   export PPWD=$PWD
 

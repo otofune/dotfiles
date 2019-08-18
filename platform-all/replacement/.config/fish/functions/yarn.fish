@@ -1,6 +1,6 @@
 # (c) otofune
 
-function yarn
+function yarn --wraps=yarn
   if [ -f 'package-lock.json' ]
     echo 'npm つかえ'
     return 0

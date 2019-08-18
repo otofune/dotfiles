@@ -1,6 +1,6 @@
 # (c) otofune
 
-function npm
+function npm --wraps=npm
   if [ -f 'yarn.lock' ]
     echo 'yarn つかえ'
     return 0
