@@ -3,7 +3,8 @@
 function code --wraps=code
   set length (count $argv)
   if test $length -eq 0
-    ghq list | fzf --exit-0 | xargs -I% command code (ghq root)/%
+    set repository (ghq list | fzf --exit-0)
+    command code (ghq root)/$repository
     return
   end
   command code $argv
