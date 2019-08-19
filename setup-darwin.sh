@@ -1,6 +1,7 @@
 #!/bin/bash
 
 i-cask () {
+	echo "Installing $1"
 	target=$1
 
 	brew cask list $1 &>/dev/null
@@ -11,6 +12,7 @@ i-cask () {
 }
 
 i () {
+	echo "Installing $1"
 	target=$1
 
 	brew list $1 &>/dev/null
@@ -33,6 +35,7 @@ i-cask slack
 i-cask docker
 i-cask visual-studio-code
 i-cask firefox
+i-cask toggl
 
 i fzf
 i direnv
