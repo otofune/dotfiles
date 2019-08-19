@@ -15,6 +15,12 @@ function fish_right_prompt
 			set gs (git rev-parse --short HEAD)
 		end
 
+		set head_behind (git rev-list --right-only --count HEAD...origin/HEAD)
+		if [ $head_behind -gt 0 ]
+		    set_color brred
+    		echo -n " -$head_behind"
+		end
+
 		set branch (git symbolic-ref --short -q HEAD)
 		if test $status -eq 0
 			set gs $branch
