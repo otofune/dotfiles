@@ -2,12 +2,11 @@
 
 # otofune/seaside helper
 function tell
-    set body $argv[1]
-    if test -z "$body"
+    if test -z "$argv"
         echo "You must specify body." 1>&2
         return
     end
     # for cancel
     sleep 1.5
-    echo $body | seaside t
+    echo $argv | seaside t
 end
