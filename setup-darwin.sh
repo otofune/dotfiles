@@ -31,11 +31,14 @@ fi
 i-cask iTerm2
 i-cask aquaskk
 i-cask 1password
+i-cask 1password-cli
 i-cask slack
 i-cask docker
 i-cask visual-studio-code
 i-cask firefox
 i-cask toggl
+i-cask aboptopenjdk
+i-cask dbeaver-community
 
 i fzf
 i direnv
@@ -47,6 +50,7 @@ i fish
 i ghq
 i micro
 i anyenv
+i watch
 
 i-cask skitch
 i-cask google-chrome
@@ -63,7 +67,10 @@ if [ $? -eq 1 ]
 then
   which fish | sudo tee -a /etc/shells
 fi
-chsh -s $(which fish)
+if [ $SHELL != $(which fish) ]
+then
+  chsh -s $(which fish)
+fi
 
 anyenv install --init
 
