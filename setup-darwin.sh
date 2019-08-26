@@ -1,7 +1,7 @@
 #!/bin/bash
 
 i-cask () {
-	echo "Installing $1"
+	echo "Installing $1 (cask)"
 	target=$1
 
 	brew cask list $1 &>/dev/null
@@ -12,7 +12,7 @@ i-cask () {
 }
 
 i () {
-	echo "Installing $1"
+	echo "Installing $1 (formula)"
 	target=$1
 
 	brew list $1 &>/dev/null
@@ -37,8 +37,10 @@ i-cask docker
 i-cask visual-studio-code
 i-cask firefox
 i-cask toggl
-i-cask aboptopenjdk
+i-cask adoptopenjdk
 i-cask dbeaver-community
+i-cask qblocker
+i-cask figma
 
 i fzf
 i direnv
@@ -67,12 +69,12 @@ if [ $? -eq 1 ]
 then
   which fish | sudo tee -a /etc/shells
 fi
-if [ $SHELL != $(which fish) ]
+if [ $SHELL != "$(which fish)" ]
 then
   chsh -s $(which fish)
 fi
 
 anyenv install --init
 
-anyenv install nodenv
-anyenv install rbenv
+anyenv install -s nodenv
+anyenv install -s rbenv
