@@ -21,14 +21,15 @@ alias docker-compose="sudo docker-compose"
 alias pacman="sudo pacman"
 
 # update packages once per hour at background
-# this part is not so well... it's better choise to use LaunchAgent || Cron.
-# but, they need priviledge access.
-set update_lock_dir ~/.config/fish/bu
-mkdir -p $update_lock_dir
-set update_lock ".u_"(date '+%y%m%d-%H')
-if [ ! -f $update_lock_dir/$update_lock  ]
-  touch $update_lock_dir/$update_lock
-  __check_update
+# this part is not so well. it's better choise to use cron
+if type __check_update > /dev/null 2>&1
+  set update_lock_dir ~/.config/fish/bu
+  mkdir -p $update_lock_dir
+  set update_lock ".u_"(date '+%y%m%d-%H')
+  if [ ! -f $update_lock_dir/$update_lock  ]
+    touch $update_lock_dir/$update_lock
+    __check_update
+  end
 end
 
 if test -f ~/.config/fish/config-secret.fish

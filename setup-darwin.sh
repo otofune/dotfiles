@@ -42,6 +42,7 @@ i-cask dbeaver-community
 i-cask qblocker
 i-cask figma
 i-cask spectacle
+i terminal-notifier
 
 i fzf
 i direnv
