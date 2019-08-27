@@ -41,6 +41,7 @@ i-cask adoptopenjdk
 i-cask dbeaver-community
 i-cask qblocker
 i-cask figma
+i-cask spectacle
 
 i fzf
 i direnv
