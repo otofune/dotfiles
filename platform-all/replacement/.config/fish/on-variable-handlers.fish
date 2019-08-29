@@ -7,10 +7,7 @@ function __git_fetch --on-variable PWD --description 'git fetch on entering dire
             # ignore moving from sub-directory
             if not string match -q -- "$PWD*" $PPWD
                 echo "Running git fetch..."
-                bash -c '
-                  C=$(git fetch 2>&1);
-                  terminal-notifier -title "git: $(git remote get-url origin)" -message "$([ \"$C\" != \"\" ] && echo $C || echo There are no changes. )" &
-                ' &
+                git fetch
             end
         end
     end
