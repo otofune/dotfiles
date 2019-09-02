@@ -16,9 +16,6 @@ abbr --add pcaman pacman
 # shorthand
 abbr --add gg git grep
 abbr --add l ls -a
-alias docker="sudo docker"
-alias docker-compose="sudo docker-compose"
-alias pacman="sudo pacman"
 
 # update packages once per hour at background
 # this part is not so well. it's better choise to use cron
