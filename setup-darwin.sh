@@ -61,6 +61,9 @@ i-cask google-chrome
 i-cask notion
 i-cask gifox
 
+brew tap heroku/brew
+i heroku
+
 code --install-extension EditorConfig.EditorConfig
 code --install-extension ms-vscode.Go
 code --install-extension castwide.solargraph
