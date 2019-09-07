@@ -99,3 +99,5 @@ code --install-extension EditorConfig.EditorConfig
 code --install-extension ms-vscode.Go
 code --install-extension castwide.solargraph
 code --install-extension mauve.terraform
+
+xdg-settings set default-web-browser firefox-developer-edition.desktop
