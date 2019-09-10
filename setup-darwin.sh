@@ -83,3 +83,6 @@ anyenv install --init
 
 anyenv install -s nodenv
 anyenv install -s rbenv
+
+sudo chown root ~/Library/LaunchDaemons/limit.maxfiles.plist
+sudo launchctl load -w ~/Library/LaunchDaemons/limit.maxfiles.plist
