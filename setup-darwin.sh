@@ -43,6 +43,8 @@ i-cask qblocker
 i-cask figma
 i-cask spectacle
 i terminal-notifier
+# watch many files
+i watchman
 
 i fzf
 i direnv
