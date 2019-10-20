@@ -101,3 +101,5 @@ code --install-extension castwide.solargraph
 code --install-extension mauve.terraform
 
 xdg-settings set default-web-browser firefox-developer-edition.desktop
+
+i-aur circleci-cli-bin
