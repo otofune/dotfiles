@@ -1,0 +1,12 @@
+[Unit]
+Description=Switch External / Internal Display when connect
+
+[Service]
+Type=simple
+SuccessExitStatus=0 1
+Environment=DISPLAY=:0
+
+ExecStart=sh -c 'xrandr | grep "DisplayPort-1 connected" && xrandr --output DisplayPort-1 --auto --dpi 180 --output eDP --off || xrandr --output DisplayPort-1 --off --output eDP --auto --dpi 110'
+
+[Install]
+WantedBy=default.target

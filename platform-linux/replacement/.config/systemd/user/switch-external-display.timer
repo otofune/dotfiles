@@ -1,0 +1,8 @@
+[Unit]
+Description=Switch monitor each 1s
+
+[Timer]
+OnCalendar=*:*:0/1
+
+[Install]
+WantedBy=timers.target
