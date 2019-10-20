@@ -5,8 +5,14 @@ function fish_right_prompt
 	if [ $status -eq 0 ]; and [ $grp = "true" ]
 		set_color brblue
 
-		git rev-parse HEAD > /dev/null 2>&1
-		if [ $status -eq 0 ]
+    # check whether HEAD is alive or not
+		git rev-parse --short HEAD > /dev/null 2>&1
+    set local_head_ready $status
+    # check whether origin/HEAD is alive or not
+		git rev-parse --short origin/HEAD > /dev/null 2>&1
+    set origin_head_ready $status
+
+		if [ $local_head_ready -eq 0 ]
 			set c (git diff (git rev-list --max-parents=0 HEAD) --check | grep 'conflict marker' | wc -l | string trim)
 			if [ $c -ne 0 ]
 				set_color brred
@@ -15,11 +21,13 @@ function fish_right_prompt
 			set gs (git rev-parse --short HEAD)
 		end
 
-		set head_behind (git rev-list --right-only --count HEAD...origin/HEAD)
-		if [ $head_behind -gt 0 ]
-		    set_color brred
-    		echo -n " -$head_behind"
-		end
+    if [ $local_head_ready -eq 0 -a $origin_head_ready -eq 0 ]
+      set head_behind (git rev-list --right-only --count HEAD...origin/HEAD)
+      if [ $head_behind -gt 0 ]
+          set_color brred
+          echo -n " -$head_behind"
+      end
+    end
 
 		set branch (git symbolic-ref --short -q HEAD)
 		if test $status -eq 0
