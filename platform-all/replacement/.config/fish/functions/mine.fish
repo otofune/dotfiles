@@ -1,6 +1,6 @@
-# (c) otofune
+# rubymine
 
-function code --wraps=code
+function mine
   set length (count $argv)
   if test $length -eq 0
     select_ghq_directory_pipe_command code

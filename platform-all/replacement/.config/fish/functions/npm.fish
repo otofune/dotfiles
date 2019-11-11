@@ -2,8 +2,8 @@
 
 function npm --wraps=npm
   if [ -f 'yarn.lock' ]
-    echo 'yarn つかえ'
-    return 0
+    echo 'Use yarn instead of npm.'
+    return 1
   end
   command npm $argv
 end
