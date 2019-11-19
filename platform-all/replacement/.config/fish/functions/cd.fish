@@ -8,7 +8,7 @@ function cd --wraps=cd
   set length (count $argv)
   if test $length -eq 0
     set repository (select_ghq_directory)
-    if $status -ne 0
+    if test $status -ne 0
       return 1
     end
     builtin cd $repository

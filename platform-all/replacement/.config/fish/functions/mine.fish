@@ -3,8 +3,8 @@
 function mine
   set length (count $argv)
   if test $length -eq 0
-    select_ghq_directory_pipe_command code
+    select_ghq_directory_pipe_command mine
     return $status
   end
-  command code $argv
+  command mine $argv
 end
