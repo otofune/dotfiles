@@ -37,3 +37,4 @@ if test -f ~/.config/fish/environment.fish
 end
 
 source ~/.config/fish/on-variable-handlers.fish
+source ~/.config/fish/aliases.fish
