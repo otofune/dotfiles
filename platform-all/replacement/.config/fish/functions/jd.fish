@@ -2,6 +2,6 @@
 
 function jd
   set TEMPORARY_DIRECTORY (mktemp -d)
-  fish -iC "$TEMPORARY_DIRECTORY"
+  fish -C "$TEMPORARY_DIRECTORY" $argv
   rm -rf $TEMPORARY_DIRECTORY
 end
