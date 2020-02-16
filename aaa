@@ -1,0 +1,39 @@
+> certbot_temporary_certonly_dns otaku.yukarium.in
+Running git fetch...
+Saving debug log to /workspace/logs/letsencrypt.log
+Plugins selected: Authenticator manual, Installer None
+Registering without email!
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel: A
+Obtaining a new certificate
+Performing the following challenges:
+dns-01 challenge for otaku.yukarium.in
+
+...
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /workspace/config/live/otaku.yukarium.in/fullchain.pem
+   Your key file has been saved at:
+   /workspace/config/live/otaku.yukarium.in/privkey.pem
+   Your cert will expire on 2020-05-16. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - Your account credentials have been saved in your Certbot
+   configuration directory at /workspace/config. You should make a
+   secure backup of this folder now. This configuration directory will
+   also contain certificates and private keys obtained by Certbot so
+   making regular backups of this folder is ideal.
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+/t/tmp.oT7r3PrQs1 >

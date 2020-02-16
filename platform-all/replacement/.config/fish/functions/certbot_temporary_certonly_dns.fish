@@ -5,13 +5,13 @@ function certbot_temporary_certonly_dns
   end
   jd  -C 'mkdir certificates' \
       -C 'mkdir logs' \
-      -c "docker run \
+      -C "docker run \
         --mount type=bind,src=(pwd)/certificates,dst=/workspace/config \
         --mount type=bind,src=(pwd)/logs,dst=/workspace/logs \
         --user (id -u):(id -g) \
-        --register-unsafely-without-email \
         -it --rm \
         certbot/certbot \
+          --register-unsafely-without-email \
           --config-dir /workspace/config \
           --logs-dir /workspace/logs \
           --work-dir /tmp \
