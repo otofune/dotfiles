@@ -16,3 +16,5 @@ end
 
 eval (opam config env)
 source ~/.asdf/asdf.fish
+
+export XDG_CONFIG_HOME=$HOME/.config

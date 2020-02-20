@@ -1,4 +1,3 @@
-
 export GOPATH="$HOME/.projects"
 
 cd $HOME
@@ -103,3 +102,7 @@ code --install-extension mauve.terraform
 xdg-settings set default-web-browser firefox-developer-edition.desktop
 
 i-aur circleci-cli-bin
+
+i noto-fonts-emoji
+i gdb
+i ttf-jetbrains-mono
