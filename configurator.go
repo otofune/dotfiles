@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/otofune/dotfiles/tools"
 	"io"
 	"io/ioutil"
 	"mime"
 	"os"
 	"os/exec"
-	"path"
 	"path/filepath"
 	"runtime"
 	"time"
@@ -23,35 +23,9 @@ func platform() (string, error) {
 	return "", fmt.Errorf("unsupported platform")
 }
 
-type target struct {
-	TargetDir  string
-	TargetName string
-	Source     string
-}
-
-func digAllFiles(base string, rel string) (targets []*target) {
-	files, err := ioutil.ReadDir(filepath.Join(base, rel))
-	if err != nil {
-		return
-	}
-	for _, file := range files {
-		name := file.Name()
-		if name == ".gitignore" {
-			continue
-		}
-		path := filepath.Join(rel, name)
-		if file.IsDir() {
-			targets = append(targets, digAllFiles(base, path)...)
-			continue
-		}
-
-		targets = append(targets, &target{
-			Source:     base + "/" + path,
-			TargetName: name,
-			TargetDir:  rel,
-		})
-	}
-	return
+type fromTo struct {
+	From string
+	To   string
 }
 
 func backup(p string) error {
@@ -76,38 +50,36 @@ func copy(dst, src string) error {
 	return nil
 }
 
-func patchOverlay(base string, overlays []*target) error {
+func patchOverlay(overlays []*fromTo) error {
 	fmt.Println("== Overlay ==")
 	for _, target := range overlays {
-		targetPath := path.Join(base, target.TargetDir, target.TargetName)
+		fmt.Printf("Patching %s => %s\n", target.From, target.To)
 
-		fmt.Printf("Patching %s => %s\n", target.Source, targetPath)
-
-		stat, err := os.Stat(targetPath)
+		stat, err := os.Stat(target.To)
 		isExist := !os.IsNotExist(err)
 
-		if err := os.MkdirAll(path.Join(base, target.TargetDir), 0755); err != nil {
+		if err := os.MkdirAll(filepath.Dir(target.To), 0755); err != nil {
 			return err
 		}
 
-		switch mime.TypeByExtension(filepath.Ext(target.TargetName)) {
+		switch mime.TypeByExtension(filepath.Ext(target.To)) {
 		case "application/json":
 			if isExist {
-				cmd := exec.Command("jq", "-rs", "add", targetPath, target.Source)
+				cmd := exec.Command("jq", "-rs", "add", target.To, target.From)
 				out, err := cmd.Output()
 				if err != nil {
 					return err
 				}
 
-				if err := backup(targetPath); err != nil {
+				if err := backup(target.To); err != nil {
 					return err
 				}
 
-				if err := ioutil.WriteFile(targetPath, out, stat.Mode()); err != nil {
+				if err := ioutil.WriteFile(target.To, out, stat.Mode()); err != nil {
 					return err
 				}
 			} else {
-				if err := copy(targetPath, target.Source); err != nil {
+				if err := copy(target.To, target.From); err != nil {
 					return err
 				}
 			}
@@ -117,26 +89,25 @@ func patchOverlay(base string, overlays []*target) error {
 	}
 	return nil
 }
-func symlinkReplacement(base string, replacements []*target) error {
+func symlinkReplacement(replacements []*fromTo) error {
 	fmt.Println("== Symlink ==")
 	for _, target := range replacements {
-		targetPath := path.Join(base, target.TargetDir, target.TargetName)
-		fmt.Printf("Linking %s => %s\n", target.Source, targetPath)
-		stat, err := os.Lstat(targetPath)
+		fmt.Printf("Linking %s => %s\n", target.From, target.To)
+		stat, err := os.Lstat(target.To)
 		if !os.IsNotExist(err) {
 			if stat.Mode()&os.ModeSymlink == 0 {
-				backup(targetPath)
+				backup(target.To)
 			} else {
-				fmt.Printf("=> Removing existing %s...\n", targetPath)
-				if err := os.Remove(targetPath); err != nil {
+				fmt.Printf("=> Removing existing %s...\n", target.To)
+				if err := os.Remove(target.To); err != nil {
 					return err
 				}
 			}
 		}
-		if err := os.MkdirAll(path.Join(base, target.TargetDir), 0755); err != nil {
+		if err := os.MkdirAll(filepath.Dir(target.To), 0755); err != nil {
 			return err
 		}
-		if err := os.Symlink(target.Source, targetPath); err != nil {
+		if err := os.Symlink(target.From, target.To); err != nil {
 			return err
 		}
 	}
@@ -149,15 +120,26 @@ func main() {
 		panic(err)
 	}
 
+	finder := tools.NewFinder([]string{".gitignore"})
+
 	platformDir, _ := filepath.Abs(fmt.Sprintf("./platform-%s", platform))
 	allDir, _ := filepath.Abs("./platform-all")
-
-	replacements := append(digAllFiles(path.Join(platformDir, "./replacement"), ""), digAllFiles(path.Join(allDir, "./replacement"), "")...)
-	overlays := append(digAllFiles(path.Join(platformDir, "./overlay"), ""), digAllFiles(path.Join(allDir, "./overlay"), "")...)
+	replacements := append(finder.ListAllFiles(filepath.Join(platformDir, "./replacement")), finder.ListAllFiles(filepath.Join(allDir, "./replacement"))...)
+	overlays := append(finder.ListAllFiles(filepath.Join(platformDir, "./overlay")), finder.ListAllFiles(filepath.Join(allDir, "./overlay"))...)
 
 	home, err := os.UserHomeDir()
 	if err != nil {
 		panic(err)
+	}
+
+	conv := func(a []*tools.File, base string) (r []*fromTo) {
+		for _, file := range a {
+			r = append(r, &fromTo{
+				From: file.AbsolutePath,
+				To:   filepath.Join(base, file.RelativePath),
+			})
+		}
+		return
 	}
 
 	var flag string
@@ -166,24 +148,23 @@ func main() {
 	}
 
 	if flag == "-D" {
-		f := func(mode, base string, targets []*target) {
+		f := func(mode string, targets []*fromTo) {
 			for _, t := range targets {
-				tp := path.Join(base, t.TargetDir, t.TargetName)
-				fmt.Printf("%s %s => %s\n", mode, t.Source, tp)
+				fmt.Printf("%s %s => %s\n", mode, t.From, t.To)
 			}
 		}
-		f("[D] Linking", home, replacements)
-		f("[D] Patching", home, overlays)
+		f("[D] Linking", conv(replacements, home))
+		f("[D] Patching", conv(overlays, home))
 		return
 	}
 
 	if flag == "-R" || flag == "" {
-		if err := symlinkReplacement(home, replacements); err != nil {
+		if err := symlinkReplacement(conv(replacements, home)); err != nil {
 			panic(err)
 		}
 	}
 	if flag == "-P" || flag == "" {
-		if err := patchOverlay(home, overlays); err != nil {
+		if err := patchOverlay(conv(overlays, home)); err != nil {
 			panic(err)
 		}
 	}
