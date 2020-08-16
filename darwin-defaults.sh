@@ -32,10 +32,16 @@ EOF
 #######
 
 main() {
+  configure-theme
   configure-finder
   configure-dock
   set-persistent-app
   killall Dock
+}
+
+configure-theme() {
+  # アクセントカラー
+  defaults write -g AppleHighlightColor "0.968627 0.831373 1.000000 Purple"
 }
 
 configure-dock() {
