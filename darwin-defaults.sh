@@ -45,10 +45,10 @@ configure-dock() {
   defaults write com.apple.dock orientation left
   defaults write com.apple.dock recent-apps -array
   defaults write com.apple.dock show-recents -bool false
-  defaults write com.apple.dock tilesize -int 30
+  defaults write com.apple.dock tilesize -int 50
   # 拡大
   defaults write com.apple.dock magnification -bool true
-  defaults write com.apple.dock largesize -int 64
+  defaults write com.apple.dock largesize -int 70
 }
 
 configure-finder() {
@@ -67,9 +67,10 @@ set-persistent-app() {
 
   # add-persistent-app /System/Applications/Launchpad.app/
   add-persistent-app /Applications/Firefox.app/
+  add-persistent-app /Applications/Spotify.app/
   add-persistent-app /Applications/Discord.app/
   add-persistent-app /Applications/iTerm.app/
-  add-persistent-app /Applications/Spotify.app/
+  # そのまま空白を指定すると詰められるので %20 にする必要がある (なんでだよ)
   add-persistent-app '/System/Applications/System%20Preferences.app'
 }
 
