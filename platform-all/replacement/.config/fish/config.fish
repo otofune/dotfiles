@@ -2,7 +2,6 @@
 
 # Set-up tools
 direnv hook fish | source
-anyenv init - fish | source
 ssh-add -A > /dev/null 2>&1
 set -x GOPATH ~/.projects
 

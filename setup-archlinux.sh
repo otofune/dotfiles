@@ -69,8 +69,6 @@ fi
 sudo chsh -s $(which fish) $USER
 
 i go
-i-aur anyenv
-anyenv install --init
 i python2
 i python
 i python-pipenv

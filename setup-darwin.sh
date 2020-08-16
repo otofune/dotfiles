@@ -55,7 +55,6 @@ i-cask google-cloud-sdk
 i fish
 i ghq
 i micro
-i anyenv
 i watch
 
 i-cask skitch
@@ -80,8 +79,3 @@ if [ $SHELL != "$(which fish)" ]
 then
   chsh -s $(which fish)
 fi
-
-anyenv install --init
-
-anyenv install -s nodenv
-anyenv install -s rbenv
