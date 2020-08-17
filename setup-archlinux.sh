@@ -92,10 +92,7 @@ i terraform
 i docker
 i docker-compose
 
-code --install-extension EditorConfig.EditorConfig
-code --install-extension ms-vscode.Go
-code --install-extension castwide.solargraph
-code --install-extension mauve.terraform
+source ./install-vscode-extensions.sh
 
 xdg-settings set default-web-browser firefox-developer-edition.desktop
 

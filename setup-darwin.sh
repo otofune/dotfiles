@@ -65,10 +65,7 @@ i-cask gifox
 brew tap heroku/brew
 i heroku
 
-code --install-extension EditorConfig.EditorConfig
-code --install-extension ms-vscode.Go
-code --install-extension castwide.solargraph
-code --install-extension mauve.terraform
+source ./install-vscode-extensions.sh
 
 grep fish /etc/shells &>/dev/null
 if [ $? -eq 1 ]
