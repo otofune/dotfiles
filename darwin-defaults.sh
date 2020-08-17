@@ -6,27 +6,21 @@
 
 add-persistent-app() {
   app_path=$1
-  # NeXTStep 時代の old-style plist は NSObject (数値など) が表現できないらしい (Wikipedia 調べ)
-  # よって少なくとも XML 形式でないとこの設定はできないことになる
-  payload=$(cat <<-EOF
-    <dict>
-      <key>tile-data</key>
-      <dict>
-        <key>file-data</key>
-        <dict>
-          <key>_CFURLString</key>
-          <string>file://$app_path</string>
-          <key>_CFURLStringType</key>
-          <integer>15</integer>
-        </dict>
-      </dict>
-    </dict>
-EOF
-  )
-  # 改行を消し飛ばす
-  # defaults がパースできないため
-  payload="$(echo -n $payload | sed 's/ //g')"
-  defaults write com.apple.dock persistent-apps -array-add $payload
+  # old-style plist のように簡潔に書ける、JSON 形式で書くことにする
+  # NeXTStep 時代の old-style plist は 数値などの NSObject を継承するフィールドを表現できないらしい (Wikipedia 調べ)
+  # このため _CFURLStringType が NSInteger であり、old-style plist では書くことができない
+  # plist は NSDictionary が top-level の Object であり、NSJSONSerialization で変換できるので、そちらを使う
+  payload='{
+    "tile-data": {
+      "file-data": {
+        "_CFURLString": "file://'; payload+=$app_path; payload+='",
+        "_CFURLStringType": 15
+      }
+    }
+  }'
+  # plist の本流は XML or binary 形式であるからか、defaults は JSON 形式を受けつけていないようなので、XML に変換してやる
+  payload="$(echo -n $payload | plutil -convert xml1 - -o -)"
+  defaults write com.apple.dock persistent-apps -array-add "$payload"
 }
 
 #######
