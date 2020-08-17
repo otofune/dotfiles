@@ -6,6 +6,8 @@
 
 add-persistent-app() {
   app_path=$1
+  # NeXTStep 時代の old-style plist は NSObject (数値など) が表現できないらしい (Wikipedia 調べ)
+  # よって少なくとも XML 形式でないとこの設定はできないことになる
   payload=$(cat <<-EOF
     <dict>
       <key>tile-data</key>
