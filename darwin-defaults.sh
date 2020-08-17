@@ -6,10 +6,8 @@
 
 add-persistent-app() {
   app_path=$1
-  # old-style plist のように簡潔に書ける、JSON 形式で書くことにする
-  # NeXTStep 時代の old-style plist は 数値などの NSObject を継承するフィールドを表現できないらしい (Wikipedia 調べ)
-  # このため _CFURLStringType が NSInteger であり、old-style plist では書くことができない
-  # plist は NSDictionary が top-level の Object であり、NSJSONSerialization で変換できるので、そちらを使う
+  # Old-Style ASCII Property List は NSNumber を表現できないので JSON から変換する
+  # 詳しくは Web でチェック: https://scrapbox.io/otofune/Property_List_%E3%82%92%E6%89%8B%E3%81%A7%E6%9B%B8%E3%81%8D%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AF_JSON_%E3%81%8B%E3%82%89%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B
   payload='{
     "tile-data": {
       "file-data": {
@@ -18,7 +16,7 @@ add-persistent-app() {
       }
     }
   }'
-  # plist の本流は XML or binary 形式であるからか、defaults は JSON 形式を受けつけていないようなので、XML に変換してやる
+  # plist としては XML, Binary, ASCII Property List が正式フォーマットなので、変換する
   payload="$(echo -n $payload | plutil -convert xml1 - -o -)"
   defaults write com.apple.dock persistent-apps -array-add "$payload"
 }
