@@ -29,6 +29,8 @@ main() {
   configure-theme
   configure-finder
   configure-dock
+  configure-music
+  killall Music
   set-persistent-app
   killall Dock
 }
@@ -72,6 +74,14 @@ set-persistent-app() {
   add-persistent-app /Applications/iTerm.app/
   # そのまま空白を指定すると詰められるので %20 にする必要がある (なんでだよ)
   add-persistent-app '/System/Applications/System%20Preferences.app'
+}
+
+configure-music() {
+  # Apple Music は今後使うことないので無効にしとく
+  defaults write com.apple.iTunes disableAppleMusic -bool true
+
+  # なぜか 2 なんだけど、なんでなんだろう…
+  defaults write com.apple.Music showStoreInSidebar -int 2
 }
 
 main
