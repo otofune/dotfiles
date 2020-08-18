@@ -5,10 +5,12 @@ i-cask () {
 	target=$1
 
 	brew cask list $1 &>/dev/null
-	if [ $? -eq 1 ]
+	if [ $? -eq 0 ]
 	then
-		brew cask install $target
+    echo $'\t'"already installed."
+    return
 	fi
+  brew cask install $target
 }
 
 i () {
@@ -16,16 +18,18 @@ i () {
 	target=$1
 
 	brew list $1 &>/dev/null
-	if [ $? -eq 1 ]
+	if [ $? -eq 0 ]
 	then
-		brew install $target
+    echo $'\t'"already installed."
+    return
 	fi
+  brew install $target
 }
 
-if [ which brew &>/dev/null -ne 1 ]
+if [ which brew &>/dev/null -eq 1 ]
 then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
+  brew update
 fi
 
 i-cask iTerm2
@@ -76,3 +80,4 @@ then
 fi
 
 source ./setup-common.sh
+source ./darwin-defaults.sh
