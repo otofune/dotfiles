@@ -92,8 +92,6 @@ i terraform
 i docker
 i docker-compose
 
-source ./install-vscode-extensions.sh
-
 xdg-settings set default-web-browser firefox-developer-edition.desktop
 
 i-aur circleci-cli-bin
@@ -101,3 +99,5 @@ i-aur circleci-cli-bin
 i noto-fonts-emoji
 i gdb
 i ttf-jetbrains-mono
+
+source ./setup-common.sh

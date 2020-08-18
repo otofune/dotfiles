@@ -65,8 +65,6 @@ i-cask gifox
 brew tap heroku/brew
 i heroku
 
-source ./install-vscode-extensions.sh
-
 grep fish /etc/shells &>/dev/null
 if [ $? -eq 1 ]
 then
@@ -76,3 +74,5 @@ if [ $SHELL != "$(which fish)" ]
 then
   chsh -s $(which fish)
 fi
+
+source ./setup-common.sh
