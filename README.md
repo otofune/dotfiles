@@ -5,14 +5,14 @@ My Shell: The Good Parts
 - darwin (macOS)
 
 ```sh
-bash setup-darwin.sh
+setup/darwin.sh
 go run configurator.go
 ```
 
-- linux (archlinux)
+- Linux (Arch Linux)
 
 ```sh
-bash setup-archlinux.sh
+setup/archlinux.sh
 go run configurator.go
 ```
 

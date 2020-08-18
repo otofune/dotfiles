@@ -1,0 +1,13 @@
+direnv
+fish
+fzf
+ghq
+go
+heroku/brew/heroku
+htop
+jq
+micro
+filosottile/musl-cross/musl-cross
+terminal-notifier
+watch
+watchman

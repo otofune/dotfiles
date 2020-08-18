@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASE_DIRECTORY=$(dirname $BASH_SOURCE)
+
 i-cask () {
 	echo "Installing $1 (cask)"
 	target=$1
@@ -32,42 +34,14 @@ then
   brew update
 fi
 
-i-cask iTerm2
-i-cask aquaskk
-i-cask 1password
-i-cask 1password-cli
-i-cask slack
-i-cask docker
-i-cask visual-studio-code
-i-cask firefox
-i-cask toggl
-i-cask adoptopenjdk
-i-cask dbeaver-community
-i-cask qblocker
-i-cask figma
-i-cask spectacle
-i terminal-notifier
-# watch many files
-i watchman
-
-i fzf
-i direnv
-i jq
-i go
-i python2
-i-cask google-cloud-sdk
-i fish
-i ghq
-i micro
-i watch
-
-i-cask skitch
-i-cask google-chrome
-i-cask notion
-i-cask gifox
-
-brew tap heroku/brew
-i heroku
+for formula in $(cat $BASE_DIRECTORY/brew-formulas.txt)
+do
+  i $formula
+done
+for cask in $(cat $BASE_DIRECTORY/brew-casks.txt)
+do
+  i-cask $cask
+done
 
 grep fish /etc/shells &>/dev/null
 if [ $? -eq 1 ]
@@ -79,5 +53,5 @@ then
   chsh -s $(which fish)
 fi
 
-source ./setup-common.sh
-source ./darwin-defaults.sh
+source $BASE_DIRECTORY/common.sh
+source $BASE_DIRECTORY/darwin-defaults.sh

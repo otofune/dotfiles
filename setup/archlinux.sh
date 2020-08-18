@@ -1,3 +1,7 @@
+#!/bin/bash
+
+BASE_DIRECTORY=$(dirname $BASH_SOURCE)
+
 export GOPATH="$HOME/.projects"
 
 cd $HOME
@@ -100,4 +104,4 @@ i noto-fonts-emoji
 i gdb
 i ttf-jetbrains-mono
 
-source ./setup-common.sh
+source $BASE_DIRECTORY/common.sh

@@ -1,24 +1,14 @@
 #!/bin/bash
 
+BASE_DIRECTORY=$(dirname $BASH_SOURCE)
+
 main() {
   install-vscode-extensions
   install-rust
 }
 
 install-vscode-extensions() {
-  local EXTENSIONS=$(cat <<EOL
-EditorConfig.EditorConfig
-esbenp.prettier-vscode
-golang.go
-hashicorp.terraform
-matklad.rust-analyzer
-ms-python.python
-ms-vsliveshare.vsliveshare
-WakaTime.vscode-wakatime
-EOL
-)
-
-  for ext in $EXTENSIONS; do
+  for ext in $(cat $BASE_DIRECTORY/code-extensions.txt); do
     code --install-extension $ext
   done
 }
