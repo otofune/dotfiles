@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/otofune/dotfiles/tools"
+	"github.com/otofune/dotfiles/cmd/configurator/tools"
 	"io"
 	"io/ioutil"
 	"mime"

@@ -5,15 +5,15 @@ My Shell: The Good Parts
 - darwin (macOS)
 
 ```sh
-setup/darwin.sh
-go run configurator.go
+cmd/setup/darwin.sh
+go run ./cmd/configurator/
 ```
 
 - Linux (Arch Linux)
 
 ```sh
-setup/archlinux.sh
-go run configurator.go
+cmd/setup/archlinux.sh
+go run ./cmd/configurator/
 ```
 
 ![cd](./docs/cd.gif "cd")
