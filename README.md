@@ -16,4 +16,4 @@ bash setup-archlinux.sh
 go run configurator.go
 ```
 
-![cd](https://i.imgur.com/8Lvw5hD.gif "cd")
+![cd](./docs/cd.gif "cd")
