@@ -84,4 +84,4 @@ configure-music() {
   defaults write com.apple.Music showStoreInSidebar -int 2
 }
 
-main
+[[ "${BASH_SOURCE[0]}" == "$0" ]] && main

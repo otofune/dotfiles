@@ -3,6 +3,7 @@
 BASE_DIRECTORY=$(dirname $BASH_SOURCE)
 
 main() {
+  install-asdf
   install-vscode-extensions
   install-rust
 }
@@ -19,4 +20,22 @@ install-rust() {
   cargo install cargo-edit
 }
 
-main
+install-asdf() {
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  cd ~/.asdf
+  git checkout "$(git describe --abbrev=0 --tags)"
+  update-asdf
+}
+
+update-asdf() {
+  source $HOME/.asdf/asdf.sh
+
+  asdf update
+
+  asdf plugin add python
+  asdf list all python
+  asdf install python 3.8.5
+  asdf global python 3.8.5
+}
+
+[[ "${BASH_SOURCE[0]}" == "$0" ]] && main

@@ -53,5 +53,5 @@ then
   chsh -s $(which fish)
 fi
 
-source $BASE_DIRECTORY/common.sh
-source $BASE_DIRECTORY/darwin-defaults.sh
+$BASE_DIRECTORY/common.sh
+$BASE_DIRECTORY/darwin-defaults.sh

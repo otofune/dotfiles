@@ -104,4 +104,4 @@ i noto-fonts-emoji
 i gdb
 i ttf-jetbrains-mono
 
-source $BASE_DIRECTORY/common.sh
+$BASE_DIRECTORY/common.sh

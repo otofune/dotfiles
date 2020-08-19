@@ -2,12 +2,13 @@
 
 # Set-up tools
 direnv hook fish | source
-source ~/.cargo/env
 ssh-add -A > /dev/null 2>&1
 set -x GOPATH ~/.projects
 
 # add path
 set -x fish_user_paths $GOPATH/bin $fish_user_paths
+source ~/.cargo/env
+source ~/.asdf/asdf.fish
 
 # typo
 abbr --add gti git
