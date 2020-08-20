@@ -10,9 +10,11 @@ firefox
 gifox
 google-chrome
 google-cloud-sdk
+iina
 iterm2
 keybase
 notion
+processing
 qblocker
 skitch
 slack
