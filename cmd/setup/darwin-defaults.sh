@@ -27,6 +27,7 @@ add-persistent-app() {
 
 main() {
   configure-theme
+  configure-scrollbar
   configure-finder
   configure-dock
   configure-music
@@ -38,6 +39,11 @@ main() {
 configure-theme() {
   # アクセントカラー
   defaults write -g AppleHighlightColor "0.968627 0.831373 1.000000 Purple"
+}
+
+configure-scrollbar() {
+  # マウスかトラックパッドかに関わらず、スクロールしないとスクロールバーが出ないようにする
+  defaults write -g AppleShowScrollBars "WhenScrolling"
 }
 
 configure-dock() {
