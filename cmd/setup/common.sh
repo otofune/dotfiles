@@ -25,6 +25,8 @@ install-asdf() {
   cd ~/.asdf
   git checkout "$(git describe --abbrev=0 --tags)"
   update-asdf
+  asdf plugin add nodejs
+  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
 }
 
 update-asdf() {
