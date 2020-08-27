@@ -1,7 +1,9 @@
 direnv
+ffmpeg
 fish
 fzf
 ghq
+gnupg
 go
 heroku/brew/heroku
 htop

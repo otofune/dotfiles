@@ -73,7 +73,7 @@ set-persistent-app() {
 
   # Finder は個別に登録されていない
 
-  # add-persistent-app /System/Applications/Launchpad.app/
+  add-persistent-app /System/Applications/Launchpad.app/
   add-persistent-app /Applications/Firefox.app/
   add-persistent-app /Applications/Spotify.app/
   add-persistent-app /Applications/Discord.app/
