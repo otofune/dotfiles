@@ -2,6 +2,7 @@
 1password-cli
 adoptopenjdk
 aquaskk
+charles
 dbeaver-community
 discord
 docker
