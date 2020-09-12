@@ -24,7 +24,7 @@ sync-brew() {
   if [ $? -eq 1 ]; then return; fi
 
   brew leaves > $(join "brew-formulas.txt")
-  brew cask list > $(join "brew-casks.txt")
+  brew list --cask > $(join "brew-casks.txt")
 }
 
 sync-code() {

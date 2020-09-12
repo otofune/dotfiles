@@ -1,13 +1,16 @@
+cmake
 direnv
 ffmpeg
 fish
 fzf
 ghq
+git-lfs
 gnupg
 go
 heroku/brew/heroku
 htop
 jq
+libpq
 micro
 filosottile/musl-cross/musl-cross
 terminal-notifier
