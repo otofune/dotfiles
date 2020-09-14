@@ -8,7 +8,13 @@ set -x GOPATH ~/.projects
 # add path
 set -x fish_user_paths $GOPATH/bin $fish_user_paths
 source ~/.cargo/env
-source ~/.asdf/asdf.fish
+
+if which anyenv > /dev/null
+  # backward compatibility
+  anyenv init - | source
+else
+  source ~/.asdf/asdf.fish
+end
 
 # typo
 abbr --add gti git
