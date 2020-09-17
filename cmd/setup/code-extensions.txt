@@ -1,3 +1,4 @@
+castwide.solargraph
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
 golang.go
