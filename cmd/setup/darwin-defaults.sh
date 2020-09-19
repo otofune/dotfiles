@@ -34,6 +34,7 @@ main() {
   killall Music
   set-persistent-app
   killall Dock
+  config-trackdevice
 }
 
 configure-theme() {
@@ -88,6 +89,11 @@ configure-music() {
 
   # なぜか 2 なんだけど、なんでなんだろう…
   defaults write com.apple.Music showStoreInSidebar -int 2
+}
+
+config-trackdevice() {
+  # トラックパッドで高速にカーソルを動かす
+  defaults write -g com.apple.trackpad.scaling -float 2
 }
 
 [[ "${BASH_SOURCE[0]}" == "$0" ]] && main
