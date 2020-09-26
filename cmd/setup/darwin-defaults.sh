@@ -48,8 +48,8 @@ configure-scrollbar() {
 }
 
 configure-dock() {
-  # ウィンドウタイトルのダブルクリックで Dock にしまう
-  defaults write -g AppleActionOnDoubleClick Minimize
+  # ウィンドウタイトルのダブルクリックでウィンドウを拡大する
+  defaults write -g AppleActionOnDoubleClick Maximize
 
   defaults write com.apple.dock orientation left
   defaults write com.apple.dock recent-apps -array
