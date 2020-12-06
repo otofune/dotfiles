@@ -5,10 +5,10 @@
 #######
 
 add-persistent-app() {
-  app_path=$1
+  local app_path=$1
   # Old-Style ASCII Property List は NSNumber を表現できないので JSON から変換する
   # 詳しくは Web でチェック: https://scrapbox.io/otofune/Property_List_%E3%82%92%E6%89%8B%E3%81%A7%E6%9B%B8%E3%81%8D%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AF_JSON_%E3%81%8B%E3%82%89%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B
-  payload='{
+  local payload='{
     "tile-data": {
       "file-data": {
         "_CFURLString": "file://'; payload+=$app_path; payload+='",
@@ -21,6 +21,33 @@ add-persistent-app() {
   defaults write com.apple.dock persistent-apps -array-add "$payload"
 }
 
+set-shortcut() {
+  local id=$1
+  local enabled=$2 # true || false
+  local parameters="["
+  for parameter in "${@:3}"
+  do
+    if [[ $parameters != "[" ]]; then
+      parameters="$parameters,"
+    fi
+    parameters="$parameters$parameter"
+  done
+  parameters="$parameters]"
+  local payload="$(cat <<EOF
+{
+  "enabled": $enabled,
+  "value": {
+    "parameters": $parameters,
+    "type": "standard"
+  }
+}
+EOF
+  )"
+  payload="$(echo -n $payload | plutil -convert xml1 - -o -)"
+  echo $payload
+  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add $id "$payload"
+}
+
 #######
 # main
 #######
@@ -31,6 +58,7 @@ main() {
   configure-finder
   configure-dock
   configure-music
+  config-shortcut
   killall Music
   set-persistent-app
   killall Dock
@@ -94,6 +122,23 @@ configure-music() {
 config-trackdevice() {
   # トラックパッドで高速にカーソルを動かす
   defaults write -g com.apple.trackpad.scaling -float 2
+}
+
+config-shortcut() {
+  # 後方互換性があるのかは知らん
+  # ログアウトだけでは反映されない。再起動が必要
+  # 60 = 前の入力ソースを選択
+  # 262144 -> 1048576（64と交換）
+  set-shortcut 60 true 32 49 1048576
+  # 61 = 入力メニューの次のソースを選択
+  # 786432 -> 1179648（65と交換）
+  set-shortcut 61 true 32 49 1179648
+  # 64 = Spotlight検索を表示
+  # 1048576 -> 262144（60と交換）
+  set-shortcut 64 true 32 49 262144
+  # 65 = Finderの検索ウィンドウを表示
+  # 1572864 -> 393216（61と交換）
+  set-shortcut 65 true 32 49 393216
 }
 
 [[ "${BASH_SOURCE[0]}" == "$0" ]] && main
