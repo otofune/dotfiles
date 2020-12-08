@@ -1,4 +1,5 @@
 {
   "go.useLanguageServer": true,
-  "editor.fontLigatures": true
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "Allure Light (rainglow)"
 }

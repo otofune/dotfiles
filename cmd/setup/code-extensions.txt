@@ -1,4 +1,5 @@
 castwide.solargraph
+daylerees.rainglow
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
 golang.go
