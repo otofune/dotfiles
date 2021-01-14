@@ -12,7 +12,7 @@ cehckout = checkout
 excludesfile = ~/.gitignore-global
 
 [ghq]
-root = ~/.projects/src
+root = ~/projects/src
 
 [filter "lfs"]
 	required = true

@@ -3,11 +3,14 @@
 # Set-up tools
 direnv hook fish | source
 ssh-add -A > /dev/null 2>&1
-set -x GOPATH ~/.projects
+set -x GOPATH ~/projects
 
 # add path
 set -x fish_user_paths $GOPATH/bin $fish_user_paths
-source ~/.cargo/env
+set -x fish_user_paths $HOME/bin $fish_user_paths
+set -x fish_user_paths $HOME/Library/Python/3.8/bin/ $fish_user_paths
+set -x fish_user_paths $HOME/.cargo/bin $fish_user_paths
+# not fish syntax: source ~/.cargo/env
 
 if which anyenv > /dev/null
   # backward compatibility
