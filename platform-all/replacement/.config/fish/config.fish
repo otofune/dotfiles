@@ -1,13 +1,13 @@
 # (c) 2018 otofune
 
-# Set-up tools
-direnv hook fish | source
 ssh-add -A > /dev/null 2>&1
-set -x GOPATH ~/projects
 
-# add path
+set -x GOPATH ~/projects
 set -x PATH $GOPATH/bin $PATH
+direnv hook fish | source
+
 set -x PATH $HOME/bin $PATH
+
 # not fish syntax: source ~/.cargo/env
 set -x PATH $HOME/.cargo/bin $PATH
 
