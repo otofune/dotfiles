@@ -9,12 +9,12 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
   </dict>
   <key>ProgramArguments</key>
   <array>
     <string>/usr/bin/env</string>
-    <string>bash</string>
+    <string>sh</string>
     <string>-c</string>
     <string>brew update | terminal-notifier -title brew</string>
   </array>

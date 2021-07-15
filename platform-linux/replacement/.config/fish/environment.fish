@@ -1,5 +1,15 @@
 # (c) otofune
 
+# update packages once per hour at background
+# this part is not so well. it's better choise to use cron
+set update_lock_dir ~/.config/fish/bu
+mkdir -p $update_lock_dir
+set update_lock ".u_"(date '+%y%m%d-%H')
+if [ ! -f $update_lock_dir/$update_lock  ]
+  touch $update_lock_dir/$update_lock
+  __check_update
+end
+
 alias docker="sudo docker"
 alias docker-compose="sudo docker-compose"
 alias pacman="sudo pacman"
@@ -13,7 +23,5 @@ if ! set -q $DISPLAY
     export GDK_DPI_SCALE=1.2
   end
 end
-
-eval (opam config env)
 
 export XDG_CONFIG_HOME=$HOME/.config

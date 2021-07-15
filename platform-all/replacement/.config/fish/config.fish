@@ -6,11 +6,10 @@ ssh-add -A > /dev/null 2>&1
 set -x GOPATH ~/projects
 
 # add path
-set -x fish_user_paths $GOPATH/bin $fish_user_paths
-set -x fish_user_paths $HOME/bin $fish_user_paths
-set -x fish_user_paths $HOME/Library/Python/3.8/bin/ $fish_user_paths
-set -x fish_user_paths $HOME/.cargo/bin $fish_user_paths
+set -x PATH $GOPATH/bin $PATH
+set -x PATH $HOME/bin $PATH
 # not fish syntax: source ~/.cargo/env
+set -x PATH $HOME/.cargo/bin $PATH
 
 if which anyenv > /dev/null
   # backward compatibility
@@ -48,3 +47,9 @@ end
 
 source ~/.config/fish/on-variable-handlers.fish
 source ~/.config/fish/aliases.fish
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
+
+# opam configuration
+source /Users/owner/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
