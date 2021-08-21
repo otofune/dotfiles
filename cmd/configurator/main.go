@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/otofune/dotfiles/cmd/configurator/tools"
 	"io"
 	"io/ioutil"
 	"mime"
@@ -11,6 +10,8 @@ import (
 	"path/filepath"
 	"runtime"
 	"time"
+
+	"github.com/otofune/dotfiles/cmd/configurator/tools"
 )
 
 func platform() (string, error) {

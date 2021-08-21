@@ -12,6 +12,7 @@ function cd --wraps=cd
       return 1
     end
     builtin cd $repository
+    __git_fetch
     return
   end
 
