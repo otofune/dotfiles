@@ -53,4 +53,5 @@ if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path
 # opam configuration
 # https://github.com/ocaml/opam/pull/4736
 #source /Users/owner/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+eval (opam env)
 

@@ -3,3 +3,4 @@
 .code
 .vscode
 .*-versions
+.DS_Store
