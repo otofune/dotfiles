@@ -1,10 +1,10 @@
-castwide.solargraph
-daylerees.rainglow
 EditorConfig.EditorConfig
-esbenp.prettier-vscode
 golang.go
-hashicorp.terraform
-matklad.rust-analyzer
-ms-python.python
-ms-vsliveshare.vsliveshare
+kangping.protobuf
+ms-vscode.cpptools
+rebornix.ruby
+Rubymaniac.vscode-direnv
+uctakeoff.vscode-counter
 WakaTime.vscode-wakatime
+wingrunr21.vscode-ruby
+wraikny.wraikny-satysfi-extension
