@@ -3,12 +3,15 @@ binwalk
 cmake
 cocoapods
 coreutils
+direnv
 dust
 ffmpeg
 fish
+fzf
 gnu-sed
 gnupg
 gnuplot
+go
 grep
 grpcurl
 jq

@@ -1,5 +1,9 @@
 # (c) 2018 otofune
 
+if test -f ~/.config/fish/environment.fish
+  source ~/.config/fish/environment.fish
+end
+
 ssh-add -A > /dev/null 2>&1
 
 set -x GOPATH ~/projects
@@ -40,9 +44,6 @@ end
 
 if test -f ~/.config/fish/config-secret.fish
   source ~/.config/fish/config-secret.fish
-end
-if test -f ~/.config/fish/environment.fish
-  source ~/.config/fish/environment.fish
 end
 
 source ~/.config/fish/aliases.fish

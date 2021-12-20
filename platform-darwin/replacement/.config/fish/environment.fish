@@ -1,5 +1,7 @@
 # (c) otofune
 
+/opt/homebrew/bin/brew shellenv | source
+
 set -x PATH $HOME/Library/Python/3.8/bin/ $PATH
 set -x PATH /usr/local/opt/libpq/bin $PATH
 

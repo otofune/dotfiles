@@ -6,10 +6,11 @@ main() {
   install-asdf
   install-vscode-extensions
   install-rust
+  install-go-tools
 }
 
 install-vscode-extensions() {
-  for ext in $(cat $BASE_DIRECTORY/code-extensions.txt); do
+  for ext in $(cat "$BASE_DIRECTORY/code-extensions.txt"); do
     code --install-extension $ext
   done
 }
@@ -22,11 +23,15 @@ install-rust() {
 
 install-asdf() {
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  cd ~/.asdf
+  pushd ~/.asdf
   git checkout "$(git describe --abbrev=0 --tags)"
   update-asdf
-  asdf plugin add nodejs
-  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+  popd
+}
+
+install-go-tools() {
+  export GOPATH="$HOME/projects"
+  go install github.com/x-motemen/ghq@latest
 }
 
 update-asdf() {
@@ -34,10 +39,10 @@ update-asdf() {
 
   asdf update
 
+  asdf plugin add nodejs
+  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
   asdf plugin add python
   asdf list all python
-  asdf install python 3.8.5
-  asdf global python 3.8.5
 }
 
 [[ "${BASH_SOURCE[0]}" == "$0" ]] && main
