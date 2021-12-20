@@ -6,6 +6,7 @@ flutter
 google-cloud-sdk
 hex-fiend
 iterm2
+krisp
 qblocker
 skitch
 slack
@@ -15,3 +16,4 @@ tg-pro
 toggl-track
 visual-studio-code
 wireshark
+zoom
