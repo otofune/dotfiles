@@ -1,5 +1,12 @@
 {
-  "go.useLanguageServer": true,
   "editor.fontLigatures": true,
-  "workbench.colorTheme": "Allure Light (rainglow)"
+  "workbench.colorTheme": "Allure Light (rainglow)",
+  "go.toolsManagement.go": "~/.asdf/installs/golang/1.19.1/go/bin/go",
+  "go.toolsGopath": "~/.vscode/gopath",
+  "go.toolsEnvVars": {
+    "GO111MODULE": "on"
+  },
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never"
 }

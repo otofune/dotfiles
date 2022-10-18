@@ -48,9 +48,6 @@ end
 
 source ~/.config/fish/aliases.fish
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
-
 # opam configuration
 # https://github.com/ocaml/opam/pull/4736
 #source /Users/owner/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

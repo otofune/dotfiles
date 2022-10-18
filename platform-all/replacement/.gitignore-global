@@ -4,3 +4,4 @@
 .vscode
 .*-versions
 .DS_Store
+.wakatime-project
