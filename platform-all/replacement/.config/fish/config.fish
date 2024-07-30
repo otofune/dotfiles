@@ -8,7 +8,10 @@ ssh-add -A > /dev/null 2>&1
 
 set -x GOPATH ~/projects
 set -x PATH $GOPATH/bin $PATH
-direnv hook fish | source
+if which direnv > /dev/null
+  # backward compatibility
+  direnv hook fish | source
+end
 
 set -x PATH $HOME/bin $PATH
 
@@ -18,8 +21,13 @@ set -x PATH $HOME/.cargo/bin $PATH
 if which anyenv > /dev/null
   # backward compatibility
   anyenv init - | source
-else
+end
+if which asdf > /dev/null
+  # backward compatibility
   source ~/.asdf/asdf.fish
+end
+if which mise > /dev/null
+  mise activate fish | source
 end
 
 # typo
@@ -51,5 +59,6 @@ source ~/.config/fish/aliases.fish
 # opam configuration
 # https://github.com/ocaml/opam/pull/4736
 #source /Users/owner/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-eval (opam env)
-
+if which opam > /dev/null
+  eval (opam env)
+end

@@ -5,3 +5,5 @@
 .*-versions
 .DS_Store
 .wakatime-project
+.obsidian
+.zed

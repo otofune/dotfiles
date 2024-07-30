@@ -10,6 +10,7 @@ cehckout = checkout
 
 [core]
 excludesfile = ~/.gitignore-global
+quotepath = false
 
 [ghq]
 root = ~/projects/src
@@ -24,3 +25,5 @@ root = ~/projects/src
 default = current
 [pull]
 	ff = only
+[grep]
+	lineNumber = true
