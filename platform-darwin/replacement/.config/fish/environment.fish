@@ -2,10 +2,9 @@
 
 /opt/homebrew/bin/brew shellenv | source
 
-set -x PATH $HOME/Library/Python/3.8/bin/ $PATH
 set -x PATH /usr/local/opt/libpq/bin $PATH
-set -x PATH $HOME/Library/Python/3.10/bin/ $PATH
 set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/Library/Python/3.11/bin $PATH
 
 ls ~/Library/LaunchAgents/local* | xargs -I% launchctl load % 2>/dev/null
 
