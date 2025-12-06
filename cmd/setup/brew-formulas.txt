@@ -1,8 +1,9 @@
 fish
 fzf
+ghq
 go
 jq
 ko
+mise
 terminal-notifier
 wget
-mise
