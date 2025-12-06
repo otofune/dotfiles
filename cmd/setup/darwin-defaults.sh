@@ -102,19 +102,27 @@ set-persistent-app() {
 
   # Finder は個別に登録されていない
 
-  add-persistent-app /System/Applications/Launchpad.app/
-  add-persistent-app /Applications/Safari.app/
+  if [ -e /System/Applications/Apps.app/ ]
+  then
+    # > macOS 26
+    add-persistent-app /System/Applications/Apps.app/
+  else
+    add-persistent-app /System/Applications/Launchpad.app/
+  fi
+  add-persistent-app /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/
   add-persistent-app /Applications/Spotify.app/
   add-persistent-app /Applications/Discord.app/
   add-persistent-app /Applications/iTerm.app/
-  # そのまま空白を指定すると詰められるので %20 にする必要がある (なんでだよ)
-  add-persistent-app '/System/Applications/System%20Preferences.app'
+  if [ -e /System/Applications/System\ Settings.app/ ]
+  then
+    # そのまま空白を指定すると詰められるので %20 にする必要がある
+    add-persistent-app '/System/Applications/System%20Settings.app'
+  else
+    add-persistent-app '/System/Applications/System%20Preferences.app'
+  fi
 }
 
 configure-music() {
-  # Apple Music は今後使うことないので無効にしとく
-  defaults write com.apple.iTunes disableAppleMusic -bool true
-
   # なぜか 2 なんだけど、なんでなんだろう…
   defaults write com.apple.Music showStoreInSidebar -int 2
 }

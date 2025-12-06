@@ -1,0 +1,5 @@
+[tools]
+node = "latest"
+"npm:@openai/codex" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:ccusage" = "latest"

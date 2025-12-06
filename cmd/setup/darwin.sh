@@ -34,10 +34,12 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ ! -f /opt/homebrew/bin/brew  ]; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  #/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew update
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 for formula in $(cat $BASE_DIRECTORY/brew-formulas.txt)
 do

@@ -38,6 +38,11 @@ abbr --add pcaman pacman
 abbr --add gg git grep
 abbr --add l ls -a
 
+abbr --add claude command claude --dangerously-skip-permissions
+abbr --add codex command codex --dangerously-bypass-approvals-and-sandbox
+
+abbr --add ff 'git fetch origin HEAD && git rebase FETCH_HEAD'
+
 # update packages once per hour at background
 # this part is not so well. it's better choise to use cron
 if type __check_update > /dev/null 2>&1

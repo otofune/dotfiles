@@ -1,10 +1,4 @@
 EditorConfig.EditorConfig
 golang.go
-kangping.protobuf
-ms-vscode.cpptools
-rebornix.ruby
-Rubymaniac.vscode-direnv
-uctakeoff.vscode-counter
-WakaTime.vscode-wakatime
-wingrunr21.vscode-ruby
-wraikny.wraikny-satysfi-extension
+WakaTime.vscode-WakaTime
+daylerees.rainglow
