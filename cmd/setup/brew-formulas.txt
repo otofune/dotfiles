@@ -1,9 +1,13 @@
+cloud-sql-proxy
+coreutils
 fish
 fzf
 ghq
+gnu-sed
 go
 jq
 ko
 mise
+protobuf
 terminal-notifier
 wget

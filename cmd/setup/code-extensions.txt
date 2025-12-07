@@ -1,4 +1,4 @@
-EditorConfig.EditorConfig
-golang.go
-WakaTime.vscode-WakaTime
 daylerees.rainglow
+editorconfig.editorconfig
+golang.go
+wakatime.vscode-wakatime
