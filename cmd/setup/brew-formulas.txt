@@ -4,7 +4,6 @@ fish
 fzf
 ghq
 gnu-sed
-go
 jq
 ko
 mise

@@ -1,7 +1,10 @@
 [tools]
 node = "latest"
 "npm:@openai/codex" = "latest"
-"npm:@anthropic-ai/claude-code" = "latest"
 "npm:ccusage" = "latest"
 "npm:firebase-tools" = "latest"
 "npm:@github/copilot" = "latest"
+"npm:@ccusage/codex" = "latest"
+"npm:@toolbox-sdk/server" = "latest"
+"npm:agent-browser" = "latest"
+go = "latest"
