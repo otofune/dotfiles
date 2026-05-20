@@ -1,10 +1,12 @@
 [tools]
-node = "latest"
+node = "lts"
+pnpm = "latest"
 "npm:@openai/codex" = "latest"
 "npm:ccusage" = "latest"
 "npm:firebase-tools" = "latest"
-"npm:@github/copilot" = "latest"
-"npm:@ccusage/codex" = "latest"
 "npm:@toolbox-sdk/server" = "latest"
 "npm:agent-browser" = "latest"
 go = "latest"
+
+[settings]
+minimum_release_age = "7d"
